@@ -10,13 +10,11 @@ public class PetStoreUserGenerator {
         .lastName("Zakurenov")
         .password("123456")
         .userStatus(1)
-        .phone("89778630680")
+        .phone("8999999999")
         .id(123456)
-        .email("pavelQA@test.ru")
+        .email("pavelQa@test.ru")
         .username("aqaUser")
         .build();
-
-
   }
 
 }
