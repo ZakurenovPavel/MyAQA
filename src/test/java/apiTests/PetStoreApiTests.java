@@ -3,10 +3,9 @@ package apiTests;
 import static builders.PetStorePetGenerator.setPetData;
 import static builders.PetStoreUserGenerator.setUserData;
 import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
+import static org.hamcrest.CoreMatchers.*;
 
 import io.restassured.specification.RequestSpecification;
-import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,10 +19,7 @@ public class PetStoreApiTests {
 
   @BeforeEach
   public void setUp() {
-    requestSpec = given()
-        .baseUri("https://petstore.swagger.io/v2")
-        .contentType(JSON)
-        .accept(JSON);
+    requestSpec = ApiSpecifications.getRequestSpec();
   }
 
   @Test
@@ -34,7 +30,7 @@ public class PetStoreApiTests {
         .basePath("/user")
         .body(setUserData())
         .when().post()
-        .then().assertThat().body("message", CoreMatchers.equalTo(String.valueOf(setUserData().getId())));
+        .then().assertThat().body("message", equalTo(String.valueOf(setUserData().getId())));
 
   }
 
@@ -47,7 +43,7 @@ public class PetStoreApiTests {
         .queryParam("username", "aqaUser")
         .queryParam("phone", "1234567")
         .when().get()
-        .then().assertThat().body("type", CoreMatchers.equalTo("unknown"));
+        .then().assertThat().body("type", equalTo("unknown"));
   }
 
   @Test
@@ -58,7 +54,7 @@ public class PetStoreApiTests {
         .basePath("/pet")
         .body(setPetData())
         .when().post()
-        .then().log().body().statusCode(200);
+        .then().statusCode(200);
   }
 
   @Test
@@ -68,7 +64,7 @@ public class PetStoreApiTests {
         .spec(requestSpec)
         .basePath("/pet/123456")
         .when().get()
-        .then().log().body().statusCode(200);
+        .then().statusCode(200);
   }
 
   @Test
@@ -78,6 +74,6 @@ public class PetStoreApiTests {
         .spec(requestSpec)
         .basePath("/pet/123456")
         .when().delete()
-        .then().log().body().statusCode(200);
+        .then().statusCode(200);
   }
 }

@@ -1,5 +1,12 @@
 package uiTests;
 
+import static uiTests.ConstantData.BAD_LOGIN;
+import static uiTests.ConstantData.BAD_PASSWORD;
+import static uiTests.ConstantData.GIT;
+import static uiTests.ConstantData.GOOD_LOGIN;
+import static uiTests.ConstantData.GOOD_PASSWORD;
+import static uiTests.ConstantData.LOGIN;
+
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import pageObject.GitHubLoginPage;
@@ -9,29 +16,30 @@ import org.junit.jupiter.api.Test;
 
 public class GitHubLoginPageTests extends BaseTest {
 
+
   @BeforeAll
   public static void config() {
-    Configuration.baseUrl = "https://www.github.com";
+    Configuration.baseUrl = GIT;
   }
 
   @BeforeEach
   public void setUp() {
-    Selenide.open("/login");
+    Selenide.open(LOGIN);
   }
 
   @Test
   public void loginOperationWithBadCredentials() {
     GitHubLoginPage gitHubLoginPage = new GitHubLoginPage();
-    gitHubLoginPage.authOperation("test@yandex.ru", "12345678");
+    gitHubLoginPage.authOperation(BAD_LOGIN, BAD_PASSWORD );
     gitHubLoginPage.isErrorMessageDisplayed();
+    Selenide.clearBrowserCookies();
   }
 
   @Test
   public void loginOperationWithGoodCredentials() {
     GitHubLoginPage gitHubLoginPage = new GitHubLoginPage();
-    gitHubLoginPage.authOperation("Pavel2030", "StrongPassword2030");
+    gitHubLoginPage.authOperation(GOOD_LOGIN, GOOD_PASSWORD );
     gitHubLoginPage.isNotErrorMessageDisplayed();
     Selenide.clearBrowserCookies();
-    //gitHubLoginPage.signOut();
   }
 }

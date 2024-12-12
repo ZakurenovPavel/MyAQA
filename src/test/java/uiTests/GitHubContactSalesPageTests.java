@@ -1,5 +1,9 @@
 package uiTests;
 
+import static uiTests.ConstantData.FIRST_NAME;
+import static uiTests.ConstantData.GIT;
+import static uiTests.ConstantData.LAST_NAME;
+
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.BeforeAll;
@@ -9,21 +13,22 @@ import org.junit.jupiter.api.Test;
 
 public class GitHubContactSalesPageTests extends BaseTest {
 
+
   @BeforeAll
   public static void config() {
-    Configuration.baseUrl = "https://www.github.com";
+    Configuration.baseUrl = GIT;
   }
 
   @BeforeEach
   public void setUp() {
-    Selenide.open("/");
+    Selenide.open(ConstantData.ROOT);
   }
 
   @Test
   public void loginOperation () {
     GitHubContactSalesPage gitHubContactSalesPage = new GitHubContactSalesPage();
-    gitHubContactSalesPage.authOperation("Pavel", "Zakurenov");
-    gitHubContactSalesPage.isDataRelated("Pavel", "Zakurenov");
-
+    gitHubContactSalesPage.authOperation(FIRST_NAME, LAST_NAME);
+    gitHubContactSalesPage.isDataRelated(FIRST_NAME, LAST_NAME);
+    Selenide.clearBrowserCookies();
   }
 }

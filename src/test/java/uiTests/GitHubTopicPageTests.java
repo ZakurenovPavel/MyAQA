@@ -1,5 +1,8 @@
 package uiTests;
 
+import static uiTests.ConstantData.GIT;
+import static uiTests.ConstantData.ROOT;
+
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.BeforeAll;
@@ -9,14 +12,15 @@ import pageObject.GitHubTopicPage;
 
 public class GitHubTopicPageTests extends BaseTest {
 
+
   @BeforeAll
   public static void config() {
-    Configuration.baseUrl = "https://www.github.com";
+    Configuration.baseUrl = GIT;
   }
 
   @BeforeEach
   public void setUp() {
-    Selenide.open("/");
+    Selenide.open(ROOT);
   }
 
   @Test
@@ -24,6 +28,7 @@ public class GitHubTopicPageTests extends BaseTest {
     GitHubTopicPage gitHubTopicPage = new GitHubTopicPage();
     gitHubTopicPage.pushResourcesButton();
     gitHubTopicPage.isValuesContained();
+    Selenide.clearBrowserCookies();
   }
 
 }

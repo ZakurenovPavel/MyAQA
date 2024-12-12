@@ -1,6 +1,6 @@
 package org.example;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -16,17 +16,7 @@ public class Main {
       }
     }
 
-    ArrayList<String> list = new ArrayList<String>();
-    list.add("A");
-    list.add("B");
-    list.add("C");
-    list.add("D");
-    list.add("E");
-    list.add("F");
-    list.add("G");
-    list.add("H");
-    list.add("I");
-    list.add("J");
+    List<String> list = List.of("A", "B", "C", "D", "E", "F", "G", "H", "I", "J");
     for(String element : list) {
       System.out.println(element);
     }
