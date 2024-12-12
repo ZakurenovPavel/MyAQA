@@ -1,12 +1,18 @@
 package apiTests;
 
+import static apiTests.ConstantData.CREATED_PET;
+import static apiTests.ConstantData.FAKE_PHONE;
+import static apiTests.ConstantData.FAKE_USERNAME;
+import static apiTests.ConstantData.LOGIN;
+import static apiTests.ConstantData.PET;
+import static apiTests.ConstantData.PHONE;
+import static apiTests.ConstantData.USER;
+import static apiTests.ConstantData.USERNAME;
 import static builders.PetStorePetGenerator.setPetData;
 import static builders.PetStoreUserGenerator.setUserData;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.*;
 
-import io.restassured.specification.RequestSpecification;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -15,19 +21,12 @@ import org.junit.jupiter.api.TestMethodOrder;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PetStoreApiTests {
 
-  private RequestSpecification requestSpec;
-
-  @BeforeEach
-  public void setUp() {
-    requestSpec = ApiSpecifications.getRequestSpec();
-  }
-
   @Test
   @Order(1)
   public void postNewUserWithCode200() {
     given()
-        .spec(requestSpec)
-        .basePath("/user")
+        .spec(ApiSpecifications.getPetstoreRequestSpec())
+        .basePath(USER)
         .body(setUserData())
         .when().post()
         .then().assertThat().body("message", equalTo(String.valueOf(setUserData().getId())));
@@ -38,10 +37,10 @@ public class PetStoreApiTests {
   @Order(2)
   public void loginUserWithCode400() {
     given()
-        .spec(requestSpec)
-        .basePath("/user/login")
-        .queryParam("username", "aqaUser")
-        .queryParam("phone", "1234567")
+        .spec(ApiSpecifications.getPetstoreRequestSpec())
+        .basePath(LOGIN)
+        .queryParam(USERNAME, FAKE_USERNAME)
+        .queryParam(PHONE, FAKE_PHONE)
         .when().get()
         .then().assertThat().body("type", equalTo("unknown"));
   }
@@ -50,8 +49,8 @@ public class PetStoreApiTests {
   @Order(3)
   public void postNewPetWithCode200() {
     given()
-        .spec(requestSpec)
-        .basePath("/pet")
+        .spec(ApiSpecifications.getPetstoreRequestSpec())
+        .basePath(PET)
         .body(setPetData())
         .when().post()
         .then().statusCode(200);
@@ -61,8 +60,8 @@ public class PetStoreApiTests {
   @Order(4)
   public void findPetById() {
     given()
-        .spec(requestSpec)
-        .basePath("/pet/123456")
+        .spec(ApiSpecifications.getPetstoreRequestSpec())
+        .basePath(CREATED_PET)
         .when().get()
         .then().statusCode(200);
   }
@@ -71,8 +70,8 @@ public class PetStoreApiTests {
   @Order(5)
   public void deletePetById() {
     given()
-        .spec(requestSpec)
-        .basePath("/pet/123456")
+        .spec(ApiSpecifications.getPetstoreRequestSpec())
+        .basePath(CREATED_PET)
         .when().delete()
         .then().statusCode(200);
   }

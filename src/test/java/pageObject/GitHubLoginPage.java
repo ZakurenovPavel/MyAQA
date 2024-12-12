@@ -7,13 +7,17 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 public class GitHubLoginPage {
+
   private static final SelenideElement userLoginInput = $(By.id("login_field"));
   private static final SelenideElement userPasswordInput = $(By.id("password"));
   private static final SelenideElement submitButton = $(By.xpath(".//input[@value='Sign in']"));
-  private static final SelenideElement invalidCredErrorMessage = $(By.xpath(".//div[@class='js-flash-alert']"));
-  private static final SelenideElement profileButton = $(By.xpath(".//button[@aria-label='Open user navigation menu']"));
+  private static final SelenideElement invalidCredErrorMessage = $(
+      By.xpath(".//div[@class='js-flash-alert']"));
+  private static final SelenideElement profileButton = $(
+      By.xpath(".//button[@aria-label='Open user navigation menu']"));
   private static final SelenideElement logoutButton = $(By.xpath(".//a[@href='/logout']"));
-  private static final SelenideElement doubleCheckLogoutButton = $(By.xpath(".//input[@value='Sign out']"));
+  private static final SelenideElement doubleCheckLogoutButton = $(
+      By.xpath(".//input[@value='Sign out']"));
 
 
   public void authOperation(String login, String password) {

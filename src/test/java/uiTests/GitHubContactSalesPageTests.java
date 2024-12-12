@@ -1,7 +1,7 @@
 package uiTests;
 
 import static uiTests.ConstantData.FIRST_NAME;
-import static uiTests.ConstantData.GIT;
+import static uiTests.ConstantData.GIT_URL;
 import static uiTests.ConstantData.LAST_NAME;
 
 import com.codeborne.selenide.Configuration;
@@ -16,7 +16,7 @@ public class GitHubContactSalesPageTests extends BaseTest {
 
   @BeforeAll
   public static void config() {
-    Configuration.baseUrl = GIT;
+    Configuration.baseUrl = GIT_URL;
   }
 
   @BeforeEach
@@ -25,7 +25,7 @@ public class GitHubContactSalesPageTests extends BaseTest {
   }
 
   @Test
-  public void loginOperation () {
+  public void loginOperation() {
     GitHubContactSalesPage gitHubContactSalesPage = new GitHubContactSalesPage();
     gitHubContactSalesPage.authOperation(FIRST_NAME, LAST_NAME);
     gitHubContactSalesPage.isDataRelated(FIRST_NAME, LAST_NAME);

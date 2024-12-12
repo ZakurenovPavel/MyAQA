@@ -1,6 +1,6 @@
 package uiTests;
 
-import static uiTests.ConstantData.GIT;
+import static uiTests.ConstantData.GIT_URL;
 import static uiTests.ConstantData.ROOT;
 
 import com.codeborne.selenide.Configuration;
@@ -15,7 +15,7 @@ public class GitHubTopicPageTests extends BaseTest {
 
   @BeforeAll
   public static void config() {
-    Configuration.baseUrl = GIT;
+    Configuration.baseUrl = GIT_URL;
   }
 
   @BeforeEach

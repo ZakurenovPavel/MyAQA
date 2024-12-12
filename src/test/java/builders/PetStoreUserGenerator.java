@@ -3,6 +3,7 @@ package builders;
 import pojo.PostPetStoreUser;
 
 public class PetStoreUserGenerator {
+
   public static PostPetStoreUser setUserData() {
     return PostPetStoreUser
         .builder()

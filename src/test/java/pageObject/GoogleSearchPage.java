@@ -10,7 +10,9 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 public class GoogleSearchPage {
-  private static final SelenideElement searchQueryInput = $(By.xpath(".//textarea[@aria-label='Найти']"));
+
+  private static final SelenideElement searchQueryInput = $(
+      By.xpath(".//textarea[@aria-label='Найти']"));
   private static final SelenideElement searchButton = $(By.xpath(".//input[@role='button']"));
   ElementsCollection results = $$(By.xpath(".//span[@jscontroller and @jsaction and not(@style)]"));
 

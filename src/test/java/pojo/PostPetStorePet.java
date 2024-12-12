@@ -11,11 +11,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class PostPetStorePet{
-	private List<String> photoUrls;
-	private String name;
-	private int id;
-	private Category category;
-	private List<TagsItem> tags;
-	private String status;
+public class PostPetStorePet {
+
+  private List<String> photoUrls;
+  private String name;
+  private int id;
+  private Category category;
+  private List<TagsItem> tags;
+  private String status;
 }

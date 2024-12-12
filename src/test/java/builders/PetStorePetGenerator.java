@@ -6,6 +6,9 @@ import pojo.PostPetStorePet;
 import pojo.TagsItem;
 
 public class PetStorePetGenerator {
+
+  private static final String DOG_IMAGE = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLWd4N2COlX0srRPJcyIyzcaBDpoXIm0cylg&s";
+
   public static PostPetStorePet setPetData() {
 
     Category category = new Category();
@@ -22,7 +25,7 @@ public class PetStorePetGenerator {
 
     return PostPetStorePet
         .builder()
-        .photoUrls(List.of("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLWd4N2COlX0srRPJcyIyzcaBDpoXIm0cylg&s"))
+        .photoUrls(List.of(DOG_IMAGE))
         .name("ChillBoy")
         .id(123456)
         .category(category)
